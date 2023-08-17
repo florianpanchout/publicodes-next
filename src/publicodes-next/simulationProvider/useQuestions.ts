@@ -162,7 +162,6 @@ export default function useQuestions({ engine, categories, situation }: Props) {
       : missingInputs.includes(question)
 
   const [relevantQuestions, setRelevantQuestions] = useState<string[]>([])
-
   useEffect(() => {
     setRelevantQuestions((prevRelevantQuestion: any) =>
       prevRelevantQuestion.length

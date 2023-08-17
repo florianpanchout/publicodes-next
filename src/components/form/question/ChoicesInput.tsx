@@ -15,22 +15,21 @@ export default function ChoicesInput({ question, setValue }: Props) {
     <div className='flex gap-4'>
       {choices &&
         choices.map((choice: any) => (
-          <label key={choice.value} className='p-4 border border-white rounded'>
+          <button
+            key={choice.value}
+            className={` px-4 py-2 rounded border border-white ${
+              isMissing
+                ? false
+                : value === choice.value.substr(1, choice.value.length - 2) ||
+                  (!value && choice.value === 'non') ||
+                  (value && choice.value === 'oui')
+                ? 'bg-white text-black'
+                : 'bg-black text-white'
+            }`}
+            onClick={() => setValue(choice.value)}
+          >
             {choice.label}
-            <input
-              type='radio'
-              name={question}
-              value={choice.value}
-              checked={
-                isMissing
-                  ? false
-                  : value === choice.value.substr(1, choice.value.length - 2) ||
-                    (!value && choice.value === 'non') ||
-                    (value && choice.value === 'oui')
-              }
-              onChange={(event) => setValue(event.currentTarget.value)}
-            />
-          </label>
+          </button>
         ))}
     </div>
   )
